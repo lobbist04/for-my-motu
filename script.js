@@ -39,8 +39,32 @@ function initiateSuccess() {
 }
 
 function showEmotionalLetter() {
-    document.getElementById('letter-title').innerText = "Dearest Jyoti (Motu), ❤️";
-    document.getElementById('letter-body').innerHTML = "I wrote this code because words sometimes fail to describe how much you mean to me.<br><br>" +
-        "You are the perfect logic in my chaotic world. Every 'Yes' from you is a successful build in my life.<br><br>" +
+    const text = "Dearest Jyoti (Motu), ❤️ \n\n" +
+        "I wrote this code because words sometimes fail to describe how much you mean to me. " +
+        "You are the perfect logic in my chaotic world. Every 'Yes' from you is a successful build in my life. " +
         "I promise to be the one who fixes your bugs, shares your snacks, and loves you forever.";
+
+    const target = document.getElementById('letter-body');
+    target.innerHTML = ""; // Clear initial
+    let i = 0;
+
+    function type() {
+        if (i < text.length) {
+            // Check for new line character
+            if (text.charAt(i) === "\n") {
+                target.innerHTML += "<br>";
+            } else {
+                target.innerHTML += text.charAt(i);
+            }
+            i++;
+            // Scroll the box down as it types
+            const box = document.querySelector('.letter-box');
+            box.scrollTop = box.scrollHeight;
+            
+            setTimeout(type, 40); // 40ms for a smooth, natural speed
+        }
+    }
+    
+    document.getElementById('letter-title').innerText = "My Heart For You";
+    type();
 }
