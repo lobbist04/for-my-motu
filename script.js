@@ -16,9 +16,29 @@ function dodge() {
 }
 
 function initiateSuccess() {
-    // Firework Effect
-    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+    // 1. Start Fireworks/Confetti
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+
+    // 2. Hide the Bubu/Dudu animation smoothly
+    document.querySelector('.main-stage').style.opacity = '0';
+    document.getElementById('dialogue-box').style.opacity = '0';
+
+    // 3. Show the Letter on the SAME page (Music keeps playing!)
     setTimeout(() => {
-        window.location.href = 'letter.html';
-    }, 2000);
+        document.querySelector('.main-stage').classList.add('hidden');
+        document.getElementById('final-letter-overlay').classList.remove('hidden');
+        showEmotionalLetter();
+    }, 1500);
+}
+
+function showEmotionalLetter() {
+    const title = "Dearest Jyoti (Motu), ❤️";
+    const body = "I wrote this code because words sometimes fail to describe how much you mean to me. You are the perfect logic in my chaotic world. Every 'Yes' from you is a successful build in my life. I promise to be the one who fixes your bugs, shares your snacks, and loves you forever.";
+    
+    document.getElementById('letter-title').innerText = title;
+    document.getElementById('letter-body').innerText = body;
 }
