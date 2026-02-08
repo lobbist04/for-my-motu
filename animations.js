@@ -1,94 +1,64 @@
-// Function to create falling roses, stars, and flowers
-function startEmojiRain() {
-    const container = document.getElementById('rain-container');
-    const emojis = ['🌹', '✨', '⭐', '🌸', '🌷'];
-
-    // Reduced frequency to 600ms to prevent lagging on mobile
-    setInterval(() => {
-        if (document.hidden) return; // Stop generating if she switches apps
-
-        const item = document.createElement('div');
-        item.className = 'falling-item';
-        item.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        // Randomize position and speed
-        item.style.left = Math.random() * 95 + 'vw'; 
-        item.style.fontSize = Math.random() * 15 + 15 + 'px';
-        item.style.animationDuration = Math.random() * 2 + 3 + 's'; 
-        
-        container.appendChild(item);
-
-        // Remove element before it creates lag
-        setTimeout(() => {
-            item.remove();
-        }, 4000);
-    }, 600); 
-}
-
-// Bubu & Dudu Animation Logic
-window.onload = () => {
-    /// ... (keep your startEmojiRain and other code)
-
-// Add these functions to animations.js
+// 1. Move these to the top so the HTML can find them
 function showBigRose() {
-    document.getElementById('big-rose-overlay').classList.remove('hidden');
+    const rose = document.getElementById('big-rose-overlay');
+    rose.classList.remove('hidden');
+    rose.style.display = 'flex';
 }
 
 function closeRose() {
-    document.getElementById('big-rose-overlay').classList.add('hidden');
+    document.getElementById('big-rose-overlay').style.display = 'none';
 }
 
-// Update the section inside window.onload where the dialogue appears:
-setTimeout(() => {
-    dudu.innerHTML = "( >_<) <br> _/ \\_ 🌹";
-    bubu.innerHTML = "(｡♥‿♥｡)";
-    
-    // Show Gift and Dialogue
-    document.getElementById('gift-section').classList.remove('hidden');
-    document.getElementById('dialogue-box').classList.remove('hidden');
-    document.getElementById('dialogue-box').style.opacity = "1";
-    
-    typeWriter("Jyoti, you are my world's favorite logic error. Will you be my Motu forever?");
-}, 3500);
+function startEmojiRain() {
+    const container = document.getElementById('rain-container');
+    const emojis = ['🌹', '✨', '⭐', '🌸'];
 
-    // 1. Play music (Triggered by the click on the previous page)
-    if (bgm) {
-        bgm.play().catch(e => console.log("Music waiting for interaction"));
-    }
+    setInterval(() => {
+        if (document.hidden) return; 
+        const item = document.createElement('div');
+        item.className = 'falling-item';
+        item.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        item.style.left = Math.random() * 95 + 'vw'; 
+        item.style.fontSize = Math.random() * 15 + 15 + 'px';
+        item.style.animationDuration = Math.random() * 2 + 3 + 's'; 
+        container.appendChild(item);
+        setTimeout(() => { item.remove(); }, 4000);
+    }, 700); // Slower interval to stop lag
+}
 
-    // 2. Dudu walks toward Bubu
+window.onload = () => {
+    startEmojiRain();
+    const dudu = document.getElementById('dudu');
+    const bubu = document.getElementById('bubu');
+    const bgm = document.getElementById('bgm');
+
+    // Dudu starts walking
     setTimeout(() => {
-        // Moves Dudu forward smoothly
+        if(bgm) bgm.play().catch(() => {});
         dudu.style.transform = "translateX(60px)";
     }, 1500);
 
-    // 3. Dudu Kneels and the Question appears
+    // Dudu Kneels and Gift Appears
     setTimeout(() => {
-        // Change Dudu to Kneeling position
         dudu.innerHTML = "( >_<) <br> _/ \\_ 🌹";
-        // Change Bubu to blushing/happy
         bubu.innerHTML = "(｡♥‿♥｡)";
+        document.getElementById('gift-section').classList.remove('hidden');
+        document.getElementById('dialogue-box').classList.remove('hidden');
+        document.getElementById('dialogue-box').style.opacity = "1";
         
-        // Show the buttons and typewriter text
-        dialogueBox.classList.remove('hidden');
-        dialogueBox.style.opacity = "1";
-        
-        // Start typing the romantic question
         typeWriter("Jyoti, you are my world's favorite logic error. Will you be my Motu forever?");
     }, 3500);
 };
 
-// Typewriter Effect for the Question
 function typeWriter(text) {
     let i = 0;
     const target = document.getElementById('typewriter');
-    target.innerHTML = ""; // Clear existing text
-    
+    target.innerHTML = "";
     function play() {
         if (i < text.length) {
             target.innerHTML += text.charAt(i);
             i++;
-            setTimeout(play, 50); // Speed of typing
+            setTimeout(play, 50);
         }
     }
     play();
