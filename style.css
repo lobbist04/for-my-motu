@@ -1,22 +1,41 @@
 /* Colorful Romantic Gradient */
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background: linear-gradient(-45deg, #780206, #061161, #C21E56, #210103);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
+    animation: gradientBG 10s ease infinite;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.glass-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 40px rgba(194, 30, 86, 0.5);
+}
+
+.path-btn {
+    background: #C21E56;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 15px #ff4d6d;
+    transition: 0.3s;
+}
+
+.path-btn:hover { transform: scale(1.1); background: #ff4d6d; }
+
+#yes-btn {
+    background: #ff4d6d;
+    box-shadow: 0 0 25px #ff4d6d;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 /* Glassmorphism Container */
