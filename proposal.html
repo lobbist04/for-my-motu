@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Story for Motu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="proposal-page">
+    <div class="heart-bg" id="heart-bg"></div>
+
+    <div class="main-stage">
+        <div class="character-box">
+            <div id="bubu" class="char"> ( -.-) <br><span>Bubu</span></div>
+            <div id="dudu" class="char"> (o.o) 🌹 <br><span>Dudu</span></div>
+        </div>
+
+        <div id="dialogue-box" class="hidden">
+            <h1 id="typewriter"></h1>
+            <div class="actions">
+                <button id="yes-btn" onclick="initiateSuccess()">YES! 💍</button>
+                <button id="no-btn" onmouseover="dodge()">No ❌</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgm" src="romantic.mp3" loop></audio>
+
+    <script src="script.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>
