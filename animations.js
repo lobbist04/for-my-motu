@@ -1,77 +1,79 @@
+// Function to create falling roses, stars, and flowers
+function startEmojiRain() {
+    const container = document.getElementById('rain-container');
+    const emojis = ['🌹', '✨', '⭐', '🌸', '🌷'];
+
+    // Reduced frequency to 600ms to prevent lagging on mobile
+    setInterval(() => {
+        if (document.hidden) return; // Stop generating if she switches apps
+
+        const item = document.createElement('div');
+        item.className = 'falling-item';
+        item.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Randomize position and speed
+        item.style.left = Math.random() * 95 + 'vw'; 
+        item.style.fontSize = Math.random() * 15 + 15 + 'px';
+        item.style.animationDuration = Math.random() * 2 + 3 + 's'; 
+        
+        container.appendChild(item);
+
+        // Remove element before it creates lag
+        setTimeout(() => {
+            item.remove();
+        }, 4000);
+    }, 600); 
+}
+
+// Bubu & Dudu Animation Logic
 window.onload = () => {
-    if (window.location.pathname.includes("proposal.html")) {
-        const dudu = document.getElementById('dudu');
-        const bgm = document.getElementById('bgm');
+    // Start the background rain immediately
+    startEmojiRain();
+    
+    const dudu = document.getElementById('dudu');
+    const bubu = document.getElementById('bubu');
+    const bgm = document.getElementById('bgm');
+    const dialogueBox = document.getElementById('dialogue-box');
 
-        // 1. Start Music
-        bgm.play().catch(() => console.log("User must interact first"));
-
-        // 2. Dudu walks to Bubu
-        setTimeout(() => {
-            dudu.style.left = '40%';
-        }, 1000);
-
-        // 3. Dudu kneels and proposes
-        setTimeout(() => {
-            dudu.innerHTML = "( >_<) <br> _/ \\_ 🌹<br><span>Dudu</span>";
-            document.getElementById('dialogue-box').classList.remove('hidden');
-            startTypewriter();
-        }, 3000);
+    // 1. Play music (Triggered by the click on the previous page)
+    if (bgm) {
+        bgm.play().catch(e => console.log("Music waiting for interaction"));
     }
+
+    // 2. Dudu walks toward Bubu
+    setTimeout(() => {
+        // Moves Dudu forward smoothly
+        dudu.style.transform = "translateX(60px)";
+    }, 1500);
+
+    // 3. Dudu Kneels and the Question appears
+    setTimeout(() => {
+        // Change Dudu to Kneeling position
+        dudu.innerHTML = "( >_<) <br> _/ \\_ 🌹";
+        // Change Bubu to blushing/happy
+        bubu.innerHTML = "(｡♥‿♥｡)";
+        
+        // Show the buttons and typewriter text
+        dialogueBox.classList.remove('hidden');
+        dialogueBox.style.opacity = "1";
+        
+        // Start typing the romantic question
+        typeWriter("Jyoti, you are my world's favorite logic error. Will you be my Motu forever?");
+    }, 3500);
 };
 
-function startTypewriter() {
-    const text = "Jyoti, my dear Motu... you make my heart skip a beat. Will you be mine?";
+// Typewriter Effect for the Question
+function typeWriter(text) {
     let i = 0;
-    function type() {
+    const target = document.getElementById('typewriter');
+    target.innerHTML = ""; // Clear existing text
+    
+    function play() {
         if (i < text.length) {
-            document.getElementById('typewriter').innerHTML += text.charAt(i);
+            target.innerHTML += text.charAt(i);
             i++;
-            setTimeout(type, 50);
+            setTimeout(play, 50); // Speed of typing
         }
     }
-    type();
+    play();
 }
-// Function to create falling stars and roses
-function createFallingElement() {
-    const emojis = ['🌹', '⭐', '🌸', '✨', '🌷', '💖'];
-    const element = document.createElement('div');
-    element.className = 'falling';
-    element.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-    
-    element.style.left = Math.random() * 100 + 'vw';
-    element.style.animationDuration = Math.random() * 3 + 2 + 's'; // 2-5 seconds
-    element.style.opacity = Math.random();
-    
-    document.body.appendChild(element);
-
-    // Remove element after it falls
-    setTimeout(() => { element.remove(); }, 5000);
-}
-
-// Start the rain
-setInterval(createFallingElement, 200);
-
-// Bubu & Dudu Logic
-window.onload = () => {
-    if (window.location.pathname.includes("proposal.html")) {
-        const dudu = document.getElementById('dudu');
-        const bubu = document.getElementById('bubu');
-        const bgm = document.getElementById('bgm');
-
-        // Music Start
-        bgm.play().catch(() => console.log("Music ready after click"));
-
-        // Dudu Walking
-        setTimeout(() => {
-            dudu.style.transform = "translateX(80px)";
-        }, 1000);
-
-        // Dudu Proposing
-        setTimeout(() => {
-            dudu.innerHTML = "( >_<) <br> _/ \\_ 🌹";
-            bubu.innerHTML = "(｡♥‿♥｡)";
-            document.getElementById('dialogue-box').style.display = 'block';
-        }, 3000);
-    }
-};
