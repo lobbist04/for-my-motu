@@ -1,0 +1,32 @@
+.glow {
+  font-size: 32px;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 25px #ffd1dc; }
+}
+
+.walk {
+  animation: walk 4s forwards ease-in-out;
+}
+
+@keyframes walk {
+  to { left: 100px; }
+}
+
+.kneel {
+  transform: scale(0.9);
+}
+
+.confetti {
+  position: fixed;
+  font-size: 22px;
+  animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(100vh); }
+}
