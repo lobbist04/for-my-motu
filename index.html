@@ -1,68 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For My Motu 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="animations.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypted: For Jyoti</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<audio id="bg-music" src="music.mp3" loop preload="auto"></audio>
-
-<!-- 🔐 PASSWORD SCREEN -->
-<div id="lock" class="screen">
-  <h1>🔐 Love Protected</h1>
-  <p class="hint">Hint 💡: The name Dudu lovingly calls his girl 🧸</p>
-  <input type="password" id="password" placeholder="Enter password ❤️">
-  <button onclick="unlock()">Unlock 💘</button>
-  <p id="error"></p>
-</div>
-
-<!-- 💍 PROPOSAL SCREEN -->
-<div id="proposal" class="screen hidden">
-  <h1 class="glow">Jyoti (My Motu) 💖</h1>
-
-  <div class="scene">
-    <img src="https://media.tenor.com/Y4W1j3lP6VMAAAAi/dudu-walking.gif" id="dudu">
-    <img src="https://media.tenor.com/Q9GJt2rJtSgAAAAi/bubu-bear.gif" id="bubu">
-    <img src="https://media.tenor.com/6X5P5e1X2oYAAAAi/rose.gif" id="rose" class="hidden">
-  </div>
-
-  <p id="dialogue">Someone special is coming… 🌹</p>
-  <button onclick="startProposal()">Begin 💖</button>
-
-  <div id="answer" class="hidden">
-    <h2>Will you be my forever? 💍</h2>
-    <button onclick="yes()">YES 😍</button>
-    <button id="no" onmouseover="moveNo()">NO 🙈</button>
-  </div>
-</div>
-
-<!-- 💌 LOVE LETTER SCREEN -->
-<div id="letter" class="screen hidden">
-  <h1>My Love Letter 💌</h1>
-  <p class="letter-text">
-    My dear Jyoti ❤️<br><br>
-    From the moment you entered my life,  
-    everything felt softer, warmer, and brighter.  
-    You became my peace in chaos,  
-    my smile on hard days,  
-    and my forever wish 🌙✨<br><br>
-
-    I may not be perfect,  
-    but my love for you is honest, deep, and endless.  
-    I promise to walk with you,  
-    grow with you,  
-    and love you in every version of life 💖<br><br>
-
-    Always yours,  
-    <br><strong>Dudu 🧸</strong>
-  </p>
-</div>
-
-<script src="script.js"></script>
-<script src="proposal.js"></script>
+<body class="login-page">
+    <div id="particles-js"></div>
+    <div class="vault-container">
+        <div class="glitch" data-text="L.O.V.E">L.O.V.E</div>
+        <p class="hint">Hint: My favorite Motu's real name?</p>
+        <div class="input-wrapper">
+            <input type="password" id="passInput" placeholder="Password...">
+            <button onclick="checkPassword()">Decrypt</button>
+        </div>
+        <p id="error-msg" class="hidden">Access Denied! Think again, Motu. ❤️</p>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
